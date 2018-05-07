@@ -13,8 +13,17 @@ var connection = mysql.createConnection({
   password : 'root',
   database : 'peepsandpets_db'
 });
- 
+
 connection.connect();
+
+app.get("/getUsers", function(req, res){
+    var query = `SELECT * from users`;
+    connection.query(query, function(e, r){
+        if(e) throw e;
+        console.log(r);
+    })
+})
+
 
 
 app.listen(port, function(e){
